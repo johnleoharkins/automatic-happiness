@@ -1,0 +1,138 @@
+
+
+.cont {
+    display: flex;
+}
+
+.activeLandscape {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+
+
+
+
+.imageLine {
+    display: flex;
+    flex-direction: row;
+}
+
+.video {
+    width: 100%;
+}
+
+.name__container {
+    display: flex;
+    flex-direction: row;
+    min-height: 50px;
+    width: 100%;
+    height: 100px;
+    margin: 0.1em;
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    max-width: 20rem;
+    position: relative;
+    left: 55%;
+}
+
+.landscape {
+    background-image: url(http://localhost:3000/landscapePhoto.jpg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: flex;
+    position: absolute;
+    background-size: cover;
+    opacity: 0.5;
+    max-height: 40rem;
+
+}
+
+
+.name_typography {
+    animation: alternating_font 20s infinite ease-in-out;
+    font-size: 2.5em;
+    padding: 0.5em;
+    justify-content: center;
+    /*width: 100%;*/
+}
+
+@keyframes alternating_font {
+    0% {
+        font-family: 'Pacifico', cursive;
+    }
+    10% {
+        font-family: 'Special Elite', cursive;
+    }
+    20% {
+        font-family: 'Covered By Your Grace', cursive;
+    }
+    30% {
+        font-family: 'Philosopher', sans-serif;
+    }
+    40% {
+        font-family: 'Patrick Hand', cursive;
+    }
+    50% {
+        font-family: 'Montserrat', sans-serif;
+    }
+    60% {
+        font-family: 'Great Vibes', cursive;
+    }
+    70% {
+        font-family: 'Carter One', cursive;
+    }
+    80% {
+        font-family: 'Asap', sans-serif;
+    }
+    90% {
+        font-family: 'Kaushan Script', cursive;
+    }
+    100% {
+        font-family: 'Cinzel Decorative', cursive;
+    }
+}
+
+.paragraph__container {
+    backdrop-filter: blur(10px);
+    max-width: 20rem;
+    max-height: 3rem;
+    padding: 0.5em;
+    margin: 0.1em;
+    /*height: 100%;*/
+    width: 100%;
+    left: 45%;
+    position: relative;
+    text-align: center;
+}
+.paragraph__container div{
+    animation: showParagraph 3s linear 1;
+    font-weight: lighter;
+    /*opacity: 0%;*/
+}
+
+.paragraph__container div:nth-child(2) {
+    animation-delay: 2s;
+}
+.paragraph__container div:nth-child(3) {
+    animation-delay: 3s;
+}
+
+
+@keyframes showParagraph {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+
+.resume__container {
+    margin-top: 5rem;
+}
+
+
+

@@ -1,0 +1,43 @@
+{
+  "coord": {
+    "lon": -88.9573,
+    "lat": 43.1178
+  },
+  "weather": [
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "broken clouds",
+      "icon": "04d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 44.51,
+    "feels_like": 41.29,
+    "temp_min": 42.87,
+    "temp_max": 46.45,
+    "pressure": 1012,
+    "humidity": 62
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 5.75,
+    "deg": 250
+  },
+  "clouds": {
+    "all": 75
+  },
+  "dt": 1677963003,
+  "sys": {
+    "type": 2,
+    "id": 2030877,
+    "country": "US",
+    "sunrise": 1677932850,
+    "sunset": 1677973680
+  },
+  "timezone": -21600,
+  "id": 5259218,
+  "name": "Lake Mills",
+  "cod": 200
+}
