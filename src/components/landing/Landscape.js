@@ -6,7 +6,7 @@ import {LandingActions} from "../../store/landing-slice";
 import {Style} from "@mui/icons-material";
 
 
-const StyledLandscape = styled('img')(({theme, imgSrc, opacity}) => {
+const StyledLandscape = styled('img')(({theme, imgSrc, opacity, onLoad}) => {
     const windowHeight = window.innerHeight;
     const windowWidth = window.innerWidth;
     return ({
@@ -46,7 +46,6 @@ const Landscape = () => {
     const {images, activeIndex, opacities} = useSelector(state => state.landing)
     const dispatch = useDispatch();
 
-
     const landscapeImages = images.landscapes.map((ele, index) => {
 
         return (
@@ -60,8 +59,9 @@ const Landscape = () => {
     // Use loader data of filenames for images, dispatch action to update state with the filenames.
     useEffect(() => {
         // console.log(landscapes)
-
-
+        // window.onload = () => {
+        //     dispatch(LandingActions.loaded(false));
+        // }
     }, [])
 
 

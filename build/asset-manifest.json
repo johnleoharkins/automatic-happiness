@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0562e75c.css",
+    "main.js": "/static/js/main.b3808976.js",
+    "static/js/787.2fe059e3.chunk.js": "/static/js/787.2fe059e3.chunk.js",
+    "static/media/cliftonstrengthsLogo.png": "/static/media/cliftonstrengthsLogo.ff7f3816fbea99d7a068.png",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.0562e75c.css.map": "/static/css/main.0562e75c.css.map",
+    "main.b3808976.js.map": "/static/js/main.b3808976.js.map",
+    "787.2fe059e3.chunk.js.map": "/static/js/787.2fe059e3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0562e75c.css",
+    "static/js/main.b3808976.js"
+  ]
+}

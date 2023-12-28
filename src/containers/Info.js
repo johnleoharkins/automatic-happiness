@@ -7,6 +7,8 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import {useDispatch, useSelector} from "react-redux";
 import {useLoaderData} from "react-router-dom";
 import {JazzminActions} from "../store/jazzmin-slice";
+import LoadingSpinner from "../components/loadingSpinner/LoadingSpinner";
+import {LandingActions} from "../store/landing-slice";
 
 
 
@@ -90,27 +92,29 @@ const Info = () => {
     const jazzmin = useLoaderData();
     const containerRef = useRef(null)
 
-    const cacheImages = async (srcArray) => {
-        const promises = await srcArray.map((src) => {
-            return new Promise(function (resolve, reject){
-                const img = new Image();
-                img.src = `jazzminPhotos/${src}`;
-                img.onload = resolve();
-                img.onerror = reject();
-            })
-        })
-
-        await Promise.all(promises);
-        dispatch(JazzminActions.loaded(true));
-    }
+    // const cacheImages = async (srcArray) => {
+    //     const promises = await srcArray.map((src) => {
+    //         return new Promise(function (resolve, reject){
+    //             const img = new Image();
+    //             img.src = `jazzminPhotos/${src}`;
+    //             img.onload = resolve();
+    //             img.onerror = reject();
+    //         })
+    //     })
+    //
+    //     await Promise.all(promises);
+    //     dispatch(JazzminActions.loaded(true));
+    // }
 
     useEffect(() => {
         dispatch(JazzminActions.setImages(jazzmin))
         // cacheImages(jazzmin)
     }, [])
     useEffect(() => {
-        if(images.length > 0 && !loaded){
-            cacheImages(jazzmin)
+        window.onload = () => {
+            setTimeout(() => {
+                dispatch(JazzminActions.loaded(true));
+            }, 5000)
         }
     }, [images])
 
@@ -163,10 +167,7 @@ const Info = () => {
     return (
         <React.Fragment>
             {!loaded ? (
-                    <div className={`${classes.spVol} ${classes.spVolume }`}></div>
-                // <div className={`${classes.sp} ${classes.spHydrogen}`}>
-                //
-                // </div>
+                <LoadingSpinner />
             ) : (
                 <Page style={{backgroundColor: '#777 !important'}}>
                     {/*idk*/}

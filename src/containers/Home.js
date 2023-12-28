@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import classes from './Home.module.css'
 import {LandingActions} from "../store/landing-slice";
 import {useLoaderData} from "react-router-dom";
+import LoadingSpinner from "../components/loadingSpinner/LoadingSpinner";
 
 const StyledGridPlaceHolder = styled(Grid2)(({theme}) => {
     return ({
@@ -27,19 +28,19 @@ const Home = () => {
     const {loaded, images} = useSelector(state => state.landing);
     const dispatch = useDispatch();
     const {landscapes} = useLoaderData();
-    const cacheImages = async (srcArray) => {
-        const promises = await srcArray.map((src) => {
-            return new Promise(function (resolve, reject){
-                const img = new Image();
-                img.src = `/landscapePhotos/${src}`;
-                img.onload = resolve();
-                img.onerror = reject();
-            })
-        })
-
-        await Promise.all(promises).then((val) => console.log("resolved.", val)).catch((rej) => console.log("rejected"));
-        dispatch(LandingActions.loaded(true));
-    }
+    // const cacheImages = async (srcArray) => {
+    //     const promises = await srcArray.map((src) => {
+    //         return new Promise(function (resolve, reject){
+    //             const img = new Image();
+    //             img.src = `/landscapePhotos/${src}`;
+    //             img.onload = resolve();
+    //             img.onerror = reject();
+    //         })
+    //     })
+    //
+    //     await Promise.all(promises).then((val) => console.log("resolved.", val)).catch((rej) => console.log("rejected"));
+    //     dispatch(LandingActions.loaded(true));
+    // }
     useEffect(() => {
         dispatch(LandingActions.setLandscapeImages(landscapes))
         // // if(images.length > 0){
@@ -47,16 +48,19 @@ const Home = () => {
         // // }
     }, [])
     useEffect(() => {
-        if(images.landscapes.length > 0 && !loaded){
-            cacheImages(landscapes)
+
+        window.onload = () => {
+            setTimeout(() => {
+                dispatch(LandingActions.loaded(true));
+            }, 5000)
         }
-    },[images])
+    },[])
 
     return(
         <React.Fragment>
             {!loaded ? (
-                <div className={`${classes.sp} ${classes.spHydrogen}`}>
-                </div>
+                <LoadingSpinner />
+
             ) : (
                 <Page>
                     <Landscape />
