@@ -4,22 +4,21 @@ import StyledGrid from "../components/utils/StyledGrid";
 import Landscape from "../components/landing/Landscape";
 import Resume from "../components/about/Resume";
 import Name from "../components/landing/Name";
-import NewvilleLine from "../components/landing/NewvilleLine";
 import {styled} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import PrinciplesYou from "../components/about/PrinciplesYou";
-import Socials from "../components/about/Socials";
 import {useDispatch, useSelector} from "react-redux";
-import classes from './Home.module.css'
 import {LandingActions} from "../store/landing-slice";
 import {useLoaderData} from "react-router-dom";
 import LoadingSpinner from "../components/loadingSpinner/LoadingSpinner";
 
 const StyledGridPlaceHolder = styled(Grid2)(({theme}) => {
     return ({
-        minHeight: '120px',
+        // minHeight: '120px',
+        // minHeight: '7em',
+        height: '7em',
         [theme.breakpoints.down('md')]: {
-            minHeight: '1.5rem'
+            // minHeight: '1.5rem',
+            height: '1.7em'
         }
     })
 })
@@ -28,31 +27,16 @@ const Home = () => {
     const {loaded, images} = useSelector(state => state.landing);
     const dispatch = useDispatch();
     const {landscapes} = useLoaderData();
-    // const cacheImages = async (srcArray) => {
-    //     const promises = await srcArray.map((src) => {
-    //         return new Promise(function (resolve, reject){
-    //             const img = new Image();
-    //             img.src = `/landscapePhotos/${src}`;
-    //             img.onload = resolve();
-    //             img.onerror = reject();
-    //         })
-    //     })
-    //
-    //     await Promise.all(promises).then((val) => console.log("resolved.", val)).catch((rej) => console.log("rejected"));
-    //     dispatch(LandingActions.loaded(true));
-    // }
+
     useEffect(() => {
         dispatch(LandingActions.setLandscapeImages(landscapes))
-        // // if(images.length > 0){
-        //     cacheImages(landscapes)
-        // // }
     }, [])
     useEffect(() => {
 
         window.onload = () => {
             setTimeout(() => {
                 dispatch(LandingActions.loaded(true));
-            }, 5000)
+            }, 2000)
         }
     },[])
 
@@ -71,9 +55,6 @@ const Home = () => {
                         <StyledGridPlaceHolder xs={12} md={12}></StyledGridPlaceHolder>
                         <StyledGridPlaceHolder xs={12} md={12}></StyledGridPlaceHolder>
                         <StyledGridPlaceHolder xs={12} md={12}></StyledGridPlaceHolder>
-
-                        {/*Kills the performance... */}
-                        {/*<NewvilleLine />*/}
 
                         <Resume sm={12} md={12} />
                     </StyledGrid>

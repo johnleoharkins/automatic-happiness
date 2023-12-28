@@ -9,43 +9,11 @@ import {useLoaderData} from "react-router-dom";
 import {JazzminActions} from "../store/jazzmin-slice";
 import LoadingSpinner from "../components/loadingSpinner/LoadingSpinner";
 import {LandingActions} from "../store/landing-slice";
+import Jazzmin from "../components/jazzmin/Jazzmin";
 
 
 
-const StyledImage = styled('img')(({theme, imgSrc, opacity}) => {
-    const windowHeight = window.innerHeight;
-    const windowWidth = window.innerWidth;
-    // console.log(`window height: ${windowHeight}, window width: ${windowWidth}`)
 
-    return ({
-        backgroundImage: `url(/jazzminPhotos/${imgSrc})`,
-        backgroundRepeat: 'no-repeat',
-        opacity: opacity,
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        top: 0,
-        position: 'absolute',
-        backgroundSize: 'cover',
-        // backgroundPositionY: 'center',
-        backgroundPositionX: 'center',
-        backgroundPositionY: '35%',
-        zIndex: -100,
-        transition: 'opacity 0.5s'
-    })
-})
-
-const StyledContainer = styled('div')(({theme}) => {
-    const windowHeight = window.innerHeight;
-    const windowWidth = window.innerWidth;
-    return ({
-        // position: 'absolute',
-        boxSizing: 'border-box',
-        width: '100%',
-        height: '100%',
-        display: 'flex'
-    })
-})
 
 const StyledHeader = styled(Typography)(({theme}) => {
     return ({
@@ -87,82 +55,21 @@ const StyledHeader = styled(Typography)(({theme}) => {
 })
 
 const Info = () => {
-    const {images, activeIndex, opacities, loaded} = useSelector(state => state.jazzmin)
+    const {loaded} = useSelector(state => state.jazzmin)
     const dispatch = useDispatch();
     const jazzmin = useLoaderData();
-    const containerRef = useRef(null)
-
-    // const cacheImages = async (srcArray) => {
-    //     const promises = await srcArray.map((src) => {
-    //         return new Promise(function (resolve, reject){
-    //             const img = new Image();
-    //             img.src = `jazzminPhotos/${src}`;
-    //             img.onload = resolve();
-    //             img.onerror = reject();
-    //         })
-    //     })
-    //
-    //     await Promise.all(promises);
-    //     dispatch(JazzminActions.loaded(true));
-    // }
 
     useEffect(() => {
         dispatch(JazzminActions.setImages(jazzmin))
-        // cacheImages(jazzmin)
     }, [])
+
     useEffect(() => {
         window.onload = () => {
             setTimeout(() => {
                 dispatch(JazzminActions.loaded(true));
             }, 5000)
         }
-    }, [images])
-
-    const styledImages = images.map((imgSrc, index) => {
-        let ele = (
-            <StyledImage id={"jazzmin-"+index}  key={"jazzminImage_"+index}  imgSrc={imgSrc} opacity={opacities[index]} />
-        )
-        return ele
-    })
-
-    const slide =() => {
-        if (activeIndex >= images.length -1){
-            dispatch(JazzminActions.setOpacities([0, 0, 0, 1]));
-            dispatch(JazzminActions.setActiveIndex(0));
-        }else {
-            dispatch(JazzminActions.setOpacities(opacities.map((ele, i) => {
-                if(i === activeIndex){
-                    return 1
-                }else {
-                    return 0
-                }
-            })))
-            dispatch(JazzminActions.setActiveIndex(activeIndex + 1));
-        }
-    }
-
-    const handleNext = () => {
-        slide();
-    }
-
-    useEffect(() => {
-        setTimeout(() => {
-            if (activeIndex >= images.length -1){
-                dispatch(JazzminActions.setOpacities([0, 0, 0, 1]));
-                dispatch(JazzminActions.setActiveIndex(0));
-            }else {
-                dispatch(JazzminActions.setOpacities(opacities.map((ele, i) => {
-                    if(i === activeIndex){
-                        return 1
-                    }else {
-                        return 0
-                    }
-                })))
-                dispatch(JazzminActions.setActiveIndex(activeIndex + 1));
-            }
-        }, 6000)
-
-    }, [activeIndex, images])
+    }, [])
 
     return (
         <React.Fragment>
@@ -170,11 +77,7 @@ const Info = () => {
                 <LoadingSpinner />
             ) : (
                 <Page style={{backgroundColor: '#777 !important'}}>
-                    {/*idk*/}
-                    {/*<StyledContainer ref={containerRef} onClick={handleNext}>*/}
-                    <StyledContainer ref={containerRef}>
-                        {styledImages}
-                    </StyledContainer>
+                    <Jazzmin />
                     <StyledHeader variant={'h1'}>Jazzmin Joy <br />
                         <StyledHeader variant={'body1'} className={'subheader'}>50% German Shepherd Dog<br/><span className={classes.sh}>25% Siberian Husky</span><br/><span className={classes.lr}>25% Labrador Retriever</span></StyledHeader>
                     </StyledHeader>

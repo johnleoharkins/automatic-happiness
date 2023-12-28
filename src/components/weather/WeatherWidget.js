@@ -66,7 +66,11 @@ const fetchWeather = async (city) => {
 const StyledWeatherContainer = styled(Grid2)(({theme}) => {
     return ({
         boxSizing: 'border-box',
-        margin: '1rem'
+        margin: '1rem',
+        [theme.breakpoints.down('md')]: {
+            margin: '.3em'
+        },
+
     })
 })
 
@@ -81,12 +85,18 @@ const LocationName = styled('div')(({ theme }) => ({
     fontSize: '1.2em',
     display: 'flex',
     boxSizing: 'border-box',
-    placeContent: 'center'
+    placeContent: 'center',
+    [theme.breakpoints.down('md')]: {
+        fontSize: '1em'
+    }
 }));
 
 const StyledWeatherInfo= styled(Grid2)(({theme}) => {
     return ({
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        [theme.breakpoints.up('md')]: {
+            padding: '0.25em'
+        }
     })
 })
 
@@ -95,10 +105,13 @@ const StyledCurrentTemp = styled(Typography)(({theme, fontSize}) => {
         display: 'flex',
         alignItems: 'center',
         width: 'auto',
-        height: '100%',
+        // height: '100%',
         fontSize: '1.2rem',
         [theme.breakpoints.down('md')]: {
-
+            fontSize: '1em'
+        },
+        [theme.breakpoints.up('md')]: {
+            padding: '0.25em'
         }
     })
 })
@@ -114,7 +127,7 @@ const StyledMinMaxTemp = styled(Typography)(({theme, fontSize}) => {
         // padding: '0.2rem',
         // margin: '0.3rem',
         [theme.breakpoints.down('md')]: {
-
+            fontSize: '0.7em'
         }
     })
 })
@@ -124,8 +137,14 @@ const StyledTempRange = styled(Grid2)(({theme}) => {
         boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column-reverse',
-        height: '100%',
-        justifyContent: 'center'
+        // height: '100%',
+        justifyContent: 'center',
+        [theme.breakpoints.down('md')]: {
+            padding: '.3em'
+        },
+        [theme.breakpoints.up('md')]: {
+            padding: '0.25em'
+        }
     })
 })
 
@@ -157,7 +176,7 @@ const WeatherWidget = () => {
                 <WeatherLocation xs={12}>
                     <LocationName>{location.name}</LocationName>
                 </WeatherLocation>
-                <StyledWeatherInfo xs={12} container direction={'column'}>
+                <StyledWeatherInfo xs={12} container direction={'row'}>
                     <StyledCurrentTemp xs={6} variant={'body2'}>{current.temperature}{'\u2109'}</StyledCurrentTemp>
                     <StyledTempRange xs={6}>
                         <StyledMinMaxTemp variant={'body2'}>L:{current.minimumTemperature}{'\u2109'}</StyledMinMaxTemp>

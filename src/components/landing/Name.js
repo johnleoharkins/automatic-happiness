@@ -44,7 +44,7 @@ const StyledName = styled("div")(({theme}) => {
         [theme.breakpoints.up('md')]: {
             maxWidth: '25rem',
             position: 'relative',
-            left: '55%',
+            left: '42%',
         }
     })
 })

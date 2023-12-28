@@ -13,7 +13,9 @@ const StyledLandscape = styled('img')(({theme, imgSrc, opacity, onLoad}) => {
         backgroundImage: `url(/landscapePhotos/${imgSrc})`,
         backgroundRepeat: 'no-repeat',
         width: '100%',
+        // width: 'auto',
         height: '100%',
+        // height: 'auto',
         zIndex: '-100',
         display: 'flex',
         position: 'absolute',
@@ -28,14 +30,17 @@ const StyledLandscape = styled('img')(({theme, imgSrc, opacity, onLoad}) => {
         },
         [theme.breakpoints.up('md')]: {
             maxWidth: `${windowWidth}px`,
-            maxHeight: `${windowHeight - 300}px`,
+            // maxHeight: `${windowHeight - 300}px`,
+            maxHeight: '49em',
+            backgroundPositionY: '50%'
         },
     })
 })
 
 const StyledLandscapeContainer = styled('div')(({theme}) => {
     return ({
-        display: 'flex'
+        display: 'flex',
+        // maxHeight: '28em',
     })
 })
 
@@ -52,8 +57,6 @@ const Landscape = () => {
             <StyledLandscape imgSrc={ele} key={ele} opacity={opacities[index]} />
         )
     });
-
-
 
     // Initial Effect
     // Use loader data of filenames for images, dispatch action to update state with the filenames.

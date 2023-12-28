@@ -10,7 +10,9 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 const StyledSocials = styled(Grid2)(({theme}) => {
     return ({
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        backdropFilter: 'blur(10px)',
+        maxWidth: 'fit-content'
     })
 })
 
